@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'
 
 
 export default function Navbar({ active }) {
-    const navigate = useNavigate();
+
+    // async function sound_alert() {
+    //     let audio = new Audio("/myaudio.mp3");
+    //     audio.play();
+    //     // alert("this should work");
+    // }
 
     let className_jobs = "m-3 p-2 rounded";
     let className_post_a_job = "m-3 p-2 rounded";
@@ -29,8 +33,21 @@ export default function Navbar({ active }) {
         <>
             <div className="nav">
                 <Link className="m-3" to="/" ></Link>
-                <Link className={className_jobs} to="/jobs">Jobs</Link>
-                <Link className={className_post_a_job} to="/postjob">Post a Job</Link>
+                {
+                    (localStorage.getItem("applicant_token"))
+                    ?
+                    <Link className={className_jobs} to="/jobs">Jobs</Link>
+                    :
+                    (localStorage.getItem("recruiter_token"))?<Link className={className_post_a_job} to="/postjob">Post a Job</Link>
+                    :
+                    <>
+                    <Link className={className_jobs} to="/jobs">Jobs</Link>
+                    <Link className={className_post_a_job} to="/postjob">Post a Job</Link>
+                    </>
+                }
+                
+                
+                {/* <Link className={className_post_a_job} onMouseEnter={sound_alert} to="/postjob">Post a Job</Link> */}
                 {
                     (localStorage.getItem("applicant_token") || localStorage.getItem("recruiter_token")) ?
                         (localStorage.getItem("applicant_token") ?
@@ -44,9 +61,7 @@ export default function Navbar({ active }) {
                             </>
                         )
                         :
-                        <Link className={className_signup} to="/signup">Signup</Link>
-
-
+                        <Link className={className_signup} to="/signup">Login/Signup</Link>
                 }
             </div>
         </>

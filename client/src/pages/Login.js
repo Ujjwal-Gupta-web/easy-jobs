@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from "react"
 import { login_applicant } from "../controllers/applicant";
 import { login_recruiter } from "../controllers/recruiter";
 
-
 export default function Login() {
-
   document.title="Login | Easy-Jobs";
 
+  const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  
+  useEffect(()=>{
+    if(localStorage.getItem("applicant_token")){
+      navigate("/applicant/dashboard");
+    }
+    else if(localStorage.getItem("recruiter_token")){
+      navigate("/recruiter/dashboard");
+    }
+  },[])
 
   const login_handleChange = async (e) => {
     e.preventDefault();
@@ -24,6 +33,7 @@ export default function Login() {
       login_applicant(obj).then((data) => {
         if (data.tag === true) {
           localStorage.setItem("applicant_token", data.token);
+          navigate("/applicant/dashboard");
         }
         alert(data.message);
         window.location.reload();
@@ -37,6 +47,7 @@ export default function Login() {
       login_recruiter(obj).then((data) => {
         if (data.tag === true) {
           localStorage.setItem("recruiter_token", data.token);
+          navigate("/recruiter/dashboard");
         }
         alert(data.message);
         window.location.reload();

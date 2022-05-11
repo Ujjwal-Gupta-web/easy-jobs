@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
@@ -19,6 +19,16 @@ export default function Signup() {
   const [experience, setExperience] = useState('');
 
   let [userType, setUserType] = useState("applicant");
+
+
+  useEffect(()=>{
+    if(localStorage.getItem("applicant_token")){
+      navigate("/applicant/dashboard");
+    }
+    else if(localStorage.getItem("recruiter_token")){
+      navigate("/recruiter/dashboard");
+    }
+  },[])
 
   const handleChange = async (e) => {
     e.preventDefault();

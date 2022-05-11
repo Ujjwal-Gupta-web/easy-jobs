@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 
 import Home from '../pages/Home';
@@ -9,9 +9,6 @@ import Signup from '../pages/Signup';
 import Login from '../pages/Login';
 import DashboardApplicant from '../pages/DashboardApplicant';
 import DashboardRecruiter from '../pages/DashboardRecruiter';
-
-
-
 
 
 export default function Router() {

@@ -114,6 +114,7 @@ export default function PostJob() {
           </label>
           <br />
           <select value={jobType} onChange={((e) => { setJobType(e.target.value) })} className="job-type shadow-2xl p-3 text-xl border-2  ml-10 w-[85%] bg-white outline-none rounded-xl">
+            <option value="">Select</option>
             <option value="full-time">Full-Time</option>
             <option value="part-time">Part-Time</option>
             <option value="internship">Internship</option>
@@ -126,6 +127,7 @@ export default function PostJob() {
           </label>
           <br />
           <select value={jobMode} onChange={((e) => { setJobMode(e.target.value) })} className="job-type shadow-2xl p-3 text-xl border-2  ml-10 w-[85%] bg-white outline-none rounded-xl">
+          <option value="">Select</option>
             <option value="remote">Remote</option>
             <option value="in-office">In-office</option>
           </select>
