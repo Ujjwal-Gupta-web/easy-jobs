@@ -43,6 +43,29 @@ export default function DashboardApplicant() {
                 }
             })
         }
+      });
+    }
+  }, []);
+
+  return (
+    <>
+      <div className="upperbar bg-indigo-600">
+        <div className="nav float-right p-[3rem] text-2xl font-encode text-white">
+          <Navbar active="dashboard" />
+        </div>
+        <Link to="/">
+          <h1 className="text-6xl text-white  shadow-2xl font-medium p-8 font-titan">
+            {" "}
+            Easy Jobs
+          </h1>
+        </Link>
+
+        {isApplicantLoggedIn ? (
+          <div className="profile bg-white shadow-2xl rounded-xl  p-16 ml-10 mr-10 mt-20">
+            <div className="profile-details text-left text-2xl w-[30%] rounded border-indigo-600 font-semibold border-2">
+              <h1 className="m-2 p-2"> Name : Elon musk | Applicant </h1>
+              <h1 className="m-2 p-2"> Email Address : hellogoogle@gmail.com </h1>
+            </div>
 
 
     }, []);

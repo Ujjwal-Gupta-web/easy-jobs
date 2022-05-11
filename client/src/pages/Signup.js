@@ -1,22 +1,20 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { register_applicant } from "../controllers/applicant";
 import { register_recruiter } from "../controllers/recruiter";
 
-
 export default function Signup() {
-
   document.title = "Signup | Easy-Jobs";
 
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [fullname, setFullname] = useState('');
-  const [password, setPassword] = useState('');
-  const [description, setDescription] = useState('');
-  const [experience, setExperience] = useState('');
+  const [email, setEmail] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [password, setPassword] = useState("");
+  const [description, setDescription] = useState("");
+  const [experience, setExperience] = useState("");
 
   let [userType, setUserType] = useState("applicant");
 
@@ -41,22 +39,21 @@ export default function Signup() {
         applicant_password: password,
         applicant_name: fullname,
         applicant_description: description,
-        applicant_experience: experience
-      }
-      register_applicant(obj).then(data => alert(data.message));
-    }
-    else if (userType === "recruiter") {
+        applicant_experience: experience,
+      };
+      register_applicant(obj).then((data) => alert(data.message));
+    } else if (userType === "recruiter") {
       let obj = {
         recruiter_email: email,
         recruiter_password: password,
-        recruiter_name: fullname
-      }
-      register_recruiter(obj).then(data => alert(data.message));
+        recruiter_name: fullname,
+      };
+      register_recruiter(obj).then((data) => alert(data.message));
     }
-    setEmail('');
-    setFullname('');
-    setPassword('');
-  }
+    setEmail("");
+    setFullname("");
+    setPassword("");
+  };
 
   return (
     <>
@@ -86,7 +83,10 @@ export default function Signup() {
               User Type{" "}
             </label>
             <br />
-            <select onChange={(e) => setUserType(e.target.value)} className="job-type shadow-2xl p-3 w-[85%] text-xl ml-10 border-2 bg-white outline-none rounded-xl">
+            <select
+              onChange={(e) => setUserType(e.target.value)}
+              className="job-type shadow-2xl p-3 w-[85%] text-xl ml-10 border-2 bg-white outline-none rounded-xl"
+            >
               <option value="applicant">Applicant</option>
               <option value="recruiter">Recruiter</option>
             </select>
@@ -97,19 +97,21 @@ export default function Signup() {
           <input
             type="text"
             value={fullname}
-            onChange={((e) => { setFullname(e.target.value) })}
+            onChange={(e) => {
+              setFullname(e.target.value);
+            }}
             className="role shadow-2xl p-3 w-[85%] text-xl ml-10 bg-white  outline-none border-2 rounded-xl"
           />
 
           <div className="company mt-5">
-            <label className="text-xl ml-10 font-medium">
-              Email Address
-            </label>
+            <label className="text-xl ml-10 font-medium">Email Address</label>
             <br />
             <input
               type="text"
               value={email}
-              onChange={((e) => { setEmail(e.target.value) })}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               className="company shadow-2xl p-3 w-[85%] text-xl ml-10 border-2 bg-white outline-none rounded-xl"
             />
           </div>
@@ -120,51 +122,65 @@ export default function Signup() {
             <input
               type="password"
               value={password}
-              onChange={((e) => { setPassword(e.target.value) })}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               className="location p-3 border-2 shadow-2xl w-[85%] text-xl ml-10 mb-10 bg-white outline-none rounded-xl"
             />
           </div>
 
-          {(userType === 'applicant') && <><div className="location mt-5">
-            <label className="text-xl ml-10 font-medium"> Experience</label>
-            <br />
-            <input
-              type="text"
-              value={experience}
-              onChange={((e) => { setExperience(e.target.value) })}
-              className="location p-3 border-2 shadow-2xl w-[85%] text-xl ml-10 mb-10 bg-white outline-none rounded-xl"
-            />
-          </div>
+          {userType === "applicant" && (
+            <>
+              <div className="location mt-5">
+                <label className="text-xl ml-10 font-medium"> Experience</label>
+                <br />
+                <input
+                  type="text"
+                  value={experience}
+                  onChange={(e) => {
+                    setExperience(e.target.value);
+                  }}
+                  className="location p-3 border-2 shadow-2xl w-[85%] text-xl ml-10 mb-10 bg-white outline-none rounded-xl"
+                />
+              </div>
 
-            <div className="location mt-5">
-              <label className="text-xl ml-10 font-medium"> Description</label>
-              <br />
-              <textarea
-                type="text"
-                value={description}
-                onChange={((e) => { setDescription(e.target.value) })}
-                className="location p-3 border-2 shadow-2xl w-[85%] text-xl ml-10 mb-10 bg-white outline-none rounded-xl"
-                style={{height:"140px"}}
-              ></textarea>
-            </div>
-          </>}
+              <div className="location mt-5">
+                <label className="text-xl ml-10 font-medium">
+                  {" "}
+                  Description
+                </label>
+                <br />
+                <textarea
+                  type="text"
+                  value={description}
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
+                  className="location p-3 border-2 shadow-2xl w-[85%] text-xl ml-10 mb-10 bg-white outline-none rounded-xl"
+                  style={{ height: "140px" }}
+                ></textarea>
+              </div>
+            </>
+          )}
 
           <button
             className="submit p-3 border-2 shadow-2xl w-[85%] text-xl hover:bg-[#c0c0c0] ml-10 mb-5 bg-white outline-none rounded-xl "
             type="submit"
             onClick={handleChange}
-
           >
             Submit
           </button>
 
           <div className="already flex flex-row">
-            <h3 className="ml-5 p-2 text-2xl text-indigo-600 font-medium">Already have an account?</h3>
+            <h3 className="ml-5 p-2 text-2xl text-indigo-600 font-medium">
+              Already have an account?
+            </h3>
             <button
               className="submit p-2 border-2 shadow-2xl w-[30%] text-xl hover:bg-[#c0c0c0] bg-white outline-none rounded-xl "
               type="submit"
-              onClick={() => { navigate('/login') }}
-
+              onClick={() => {
+                navigate("/login");
+              }}
             >
               Login
             </button>

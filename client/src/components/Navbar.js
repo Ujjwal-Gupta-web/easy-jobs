@@ -10,23 +10,21 @@ export default function Navbar({ active }) {
     //     // alert("this should work");
     // }
 
-    let className_jobs = "m-3 p-2 rounded";
-    let className_post_a_job = "m-3 p-2 rounded";
-    let className_signup = "m-3 p-2 rounded";
-    let className_dashboard = "m-3 p-2 rounded";
 
-    if (active === "jobs") {
-        className_jobs += " text-blue-300";
-    }
-    else if (active === "post_a_job") {
-        className_post_a_job += " text-blue-300";
-    }
-    else if (active === "signup") {
-        className_signup += " text-blue-300";
-    }
-    else if (active === "dashboard") {
-        className_dashboard += " text-blue-300";
-    }
+  let className_jobs = "m-3 p-2 rounded";
+  let className_post_a_job = "m-3 p-2 rounded";
+  let className_signup = "m-3 p-2 rounded";
+  let className_dashboard = "m-3 p-2 rounded";
+
+  if (active === "jobs") {
+    className_jobs += " text-blue-300";
+  } else if (active === "post_a_job") {
+    className_post_a_job += " text-blue-300";
+  } else if (active === "signup") {
+    className_signup += " text-blue-300";
+  } else if (active === "dashboard") {
+    className_dashboard += " text-blue-300";
+  }
 
     return (
 
@@ -68,3 +66,4 @@ export default function Navbar({ active }) {
 
     )
 }
+

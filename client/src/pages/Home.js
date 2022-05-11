@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import main from "../assets/main.png";
 import applicant from '../assets/applicant.png'
 import recruiter from '../assets/recru.png'
+import '../styles/index.css'
 
 
 export default function Home() {
   document.title = "Easy-Jobs";
   return (
     <>
-      <div className="home-page">
+      <div className="home-page no-scrollbar">
         <div className="upperbar bg-indigo-600">
           <div className="nav float-right p-[3rem] text-2xl font-encode text-white">
             <Navbar />
@@ -47,7 +48,7 @@ export default function Home() {
           </div>
 
           <div className="image absolute right-0 ">
-            <img className="fadeupdown mr-20 rounded-2xl" src={main} />
+            <img className="fadeupdown mr-20 rounded-2xl shadow-2xl" src={main} />
           </div>
         </div>
 
