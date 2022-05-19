@@ -1,13 +1,12 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from "react"
 import { login_applicant } from "../controllers/applicant";
 import { login_recruiter } from "../controllers/recruiter";
 
-
 export default function Login() {
-
+  const navigate=useNavigate();
   document.title="Login | Easy-Jobs";
 
   const [email, setEmail] = useState('')
@@ -24,6 +23,7 @@ export default function Login() {
       login_applicant(obj).then((data) => {
         if (data.tag === true) {
           localStorage.setItem("applicant_token", data.token);
+          navigate("/applicant/dashboard");
         }
         alert(data.message);
         window.location.reload();

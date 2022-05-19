@@ -20,12 +20,7 @@ module.exports = {
           animation:{
             'fadeupdown': 'fadeupdown 3s ease-in-out infinite'
 
-          }
-         
-          
-      },
-    },
-    plugins: [
-      require('tailwind-scrollbar-hide')
-    ],
+          }   
+      }
+    }
   }
