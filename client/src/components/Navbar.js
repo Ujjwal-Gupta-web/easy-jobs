@@ -1,27 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 
 export default function Navbar({ active }) {
 
-    // async function sound_alert() {
-    //     let audio = new Audio("/myaudio.mp3");
-    //     audio.play();
-    //     // alert("this should work");
-    // }
+    const navigate=useNavigate();
 
 
   let className_jobs = "m-3 p-2 rounded";
   let className_post_a_job = "m-3 p-2 rounded";
-  let className_signup = "m-3 p-2 rounded";
+  let className_login = "m-3 p-2 rounded";
   let className_dashboard = "m-3 p-2 rounded";
 
   if (active === "jobs") {
     className_jobs += " text-blue-300";
   } else if (active === "post_a_job") {
     className_post_a_job += " text-blue-300";
-  } else if (active === "signup") {
-    className_signup += " text-blue-300";
+  } else if (active === "login" || active=="signup") {
+    className_login += " text-blue-300";
   } else if (active === "dashboard") {
     className_dashboard += " text-blue-300";
   }
@@ -29,18 +25,18 @@ export default function Navbar({ active }) {
     return (
 
         <>
-            <div className="nav">
-                <Link className="m-3" to="/" ></Link>
+            <div className="nav flex">
+
                 {
                     (localStorage.getItem("applicant_token"))
                     ?
-                    <Link className={className_jobs} to="/jobs">Jobs</Link>
+                    <div><Link className={className_jobs} to="/jobs">Jobs</Link></div>
                     :
                     (localStorage.getItem("recruiter_token"))?<Link className={className_post_a_job} to="/postjob">Post a Job</Link>
                     :
                     <>
-                    <Link className={className_jobs} to="/jobs">Jobs</Link>
-                    <Link className={className_post_a_job} to="/postjob">Post a Job</Link>
+                    <div><Link className={className_jobs} to="/jobs">Jobs</Link></div>
+                    <div><Link className={className_post_a_job} to="/postjob">Post a Job</Link></div>
                     </>
                 }
                 
@@ -50,16 +46,16 @@ export default function Navbar({ active }) {
                     (localStorage.getItem("applicant_token") || localStorage.getItem("recruiter_token")) ?
                         (localStorage.getItem("applicant_token") ?
                             <>
-                                <Link className={className_dashboard} to="/applicant/dashboard" >Dashboard</Link>
-                                <button className={className_signup} onClick={() => { localStorage.removeItem("applicant_token"); window.location.reload(); }}>Logout</button>
+                                <div><Link className={className_dashboard} to="/applicant/dashboard" >Dashboard</Link></div>
+                                <div onClick={() => { localStorage.removeItem("applicant_token"); navigate("/"); }}><span style={{cursor:"pointer"}} className={className_login}>Logout</span></div>
                             </>
                             : <>
-                                <Link className={className_dashboard} to="/recruiter/dashboard" >Dashboard</Link>
-                                <button className={className_signup} onClick={() => { localStorage.removeItem("recruiter_token"); window.location.reload(); }}>Logout</button>
+                                <div><Link className={className_dashboard} to="/recruiter/dashboard" >Dashboard</Link></div>
+                                <div onClick={() => { localStorage.removeItem("recruiter_token"); navigate("/"); }}><span style={{cursor:"pointer"}} className={className_login} >Logout</span></div>
                             </>
                         )
                         :
-                        <Link className={className_signup} to="/signup">Login/Signup</Link>
+                        <div><Link className={className_login} to="/login">Login/Signup</Link></div>
                 }
             </div>
         </>

@@ -68,7 +68,7 @@ export default function Login() {
       <div className="signup-page">
         <div className="upperbar bg-indigo-600">
           <div className="nav float-right p-[3rem] text-2xl font-encode text-white">
-            <Navbar />
+            <Navbar active={"login"}/>
           </div>
           <Link to="/">
             <h1 className="text-6xl text-white  shadow-2xl font-medium p-8 font-titan">
@@ -119,13 +119,32 @@ export default function Login() {
             </select>
           </div>
 
+
+
           <button
-            className="submit p-3 border-2 shadow-2xl w-[85%] text-xl hover:bg-[#c0c0c0] ml-10 mb-5 bg-white outline-none rounded-xl "
+            className="submit p-3 border-2 shadow-xl w-[85%] text-xl hover:bg-[#c0c0c0] ml-10 mb-5 bg-white outline-none rounded-xl "
             type="submit"
             onClick={login_handleChange}
           >
-            Submit
+            Login
           </button>
+
+
+          <div className="my-3 already flex flex-row">
+            <h3 className="ml-5 p-2 text-xl text-indigo-600 font-medium">
+              Do not have an account?
+            </h3>
+            <button
+              className="submit p-2 border-2 shadow-xl w-[30%] text-xl hover:bg-[#c0c0c0] bg-white outline-none rounded-xl "
+              type="submit"
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              Signup
+            </button>
+          </div>
+
         </div>
       </div>
     </>
