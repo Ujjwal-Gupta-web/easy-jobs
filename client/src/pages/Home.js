@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import main from "../assets/main.png";
 import applicant from '../assets/applicant.png'
 import recruiter from '../assets/recru.png'
@@ -8,6 +8,15 @@ import '../styles/index.css'
 
 
 export default function Home() {
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("applicant_token")) {
+      navigate("/applicant/dashboard");
+    }
+    else if (localStorage.getItem("recruiter_token")) {
+      navigate("/recruiter/dashboard");
+    }
+  }, [])
   document.title = "Easy-Jobs";
   return (
     <>
