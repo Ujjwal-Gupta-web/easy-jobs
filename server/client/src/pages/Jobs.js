@@ -70,7 +70,7 @@ export default function Jobs() {
                 onChange={(e) => setFilter_type(e.target.value)}
                 className="p-3 w-[50%] text-xl m-5 bg-[#e0e0e0] outline-none rounded-xl "
               >
-                <option value="part-time">Select Type</option>
+                <option value="">Select Type</option>
                 <option value="part-time">Part-Time</option>
                 <option value="full-time">Full-Time</option>
                 <option value="internship">Internship</option>
