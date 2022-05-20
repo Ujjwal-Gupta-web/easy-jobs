@@ -1,7 +1,7 @@
-const base = "http://localhost:5000";
+// const base = "http://localhost:5000";
 
 export const auth_recruiter = async (obj) => {
-  const res = await fetch(`${base}/api/recruiter/auth`, {
+  const res = await fetch(`/api/recruiter/auth`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -13,7 +13,7 @@ export const auth_recruiter = async (obj) => {
 };
 
 export const register_recruiter = async (obj) => {
-  const res = await fetch(`${base}/api/recruiter/signup`, {
+  const res = await fetch(`/api/recruiter/signup`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -25,7 +25,7 @@ export const register_recruiter = async (obj) => {
 };
 
 export const login_recruiter = async (obj) => {
-  const res = await fetch(`${base}/api/recruiter/login`, {
+  const res = await fetch(`/api/recruiter/login`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -37,7 +37,7 @@ export const login_recruiter = async (obj) => {
 };
 
 export const create_jobpost = async (obj) => {
-  const res = await fetch(`${base}/api/recruiter/jobpost`, {
+  const res = await fetch(`/api/recruiter/jobpost`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -49,7 +49,7 @@ export const create_jobpost = async (obj) => {
 };
 
 export const get_jobposts = async (obj) => {
-  const res = await fetch(`${base}/api/recruiter/getjobsposted`, {
+  const res = await fetch(`/api/recruiter/getjobsposted`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -61,8 +61,8 @@ export const get_jobposts = async (obj) => {
 };
 
 export const get_all_jobposts = async () => {
-  const res = await fetch(`${base}/api/recruiter/alljobposts`, {
-    method: "GET",
+  const res = await fetch(`/api/recruiter/alljobposts`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
@@ -72,7 +72,7 @@ export const get_all_jobposts = async () => {
 };
 
 export const edit_jobpost = async (obj) => {
-  const res = await fetch(`${base}/api/recruiter/jobpost`, {
+  const res = await fetch(`/api/recruiter/jobpost`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -84,7 +84,7 @@ export const edit_jobpost = async (obj) => {
 };
 
 export const delete_jobpost = async (obj) => {
-  const res = await fetch(`${base}/api/recruiter/jobpost`, {
+  const res = await fetch(`/api/recruiter/jobpost`, {
     method: "DELETE",
     body: JSON.stringify(obj),
     headers: {
@@ -96,7 +96,7 @@ export const delete_jobpost = async (obj) => {
 };
 
 export const get_jobpost_applications = async (obj) => {
-  const res = await fetch(`${base}/api/applicant/jobpost/applications`, {
+  const res = await fetch(`/api/applicant/jobpost/applications`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -108,7 +108,7 @@ export const get_jobpost_applications = async (obj) => {
 };
 
 export const get_recruiter_details_by_id = async (obj) => {
-  const res = await fetch(`${base}/api/recruiter/recruiterdets`, {
+  const res = await fetch(`/api/recruiter/recruiterdets`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {

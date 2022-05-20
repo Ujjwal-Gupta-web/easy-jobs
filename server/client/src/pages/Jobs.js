@@ -13,6 +13,7 @@ export default function Jobs() {
   let [filteredJobs, setFilteredJobs] = useState([]);
   let [filter_type, setFilter_type] = useState("");
   let [filter_mode, setFilter_mode] = useState("");
+  let [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem("applicant_token")) {
@@ -23,8 +24,9 @@ export default function Jobs() {
         if (data.tag) {
           setIsLoggedIn(true);
           get_all_jobposts().then((data) => {
-            console.log(data);
+            // console.log(data);
             setJobs(data.message);
+            setLoading(false);
             setFilteredJobs(data.message);
           });
         } else {
@@ -35,11 +37,13 @@ export default function Jobs() {
   }, []);
 
   const jobSearch = () => {
+    setLoading(true);
     let obj = jobs.filter(
       (job) =>
         job.jobpost_type === filter_type && job.jobpost_mode === filter_mode
     );
     setFilteredJobs(obj);
+    setLoading(false);
   };
 
   return (
@@ -96,27 +100,31 @@ export default function Jobs() {
           </div>
 
           <div className="show-jobs-container bg-white shadow-2xl rounded-xl  p-16 ml-10 mr-10 mt-10">
-            <h2 className="text-3xl font-semibold  m-5 text-indigo-600">
-              {filteredJobs.length} Results Found
-            </h2>
-            {filteredJobs ? (
-              filteredJobs.map((job) => (
-                <JobContainer
-                  id={job._id}
-                  type={job.jobpost_type}
-                  mode={job.jobpost_mode}
-                  location={job.jobpost_location}
-                  company_name={job.jobpost_company_name}
-                  duration={job.jobpost_duration}
-                  role={job.jobpost_role}
-                  pay={job.jobpost_pay}
-                  job_description={job.jobpost_job_description}
-                  experience={job.jobpost_experience}
-                />
-              ))
-            ) : (
-              <>No job openings</>
-            )}
+            {(!loading) ? <>
+              <h2 className="text-3xl font-semibold  m-5 text-indigo-600">
+                {filteredJobs.length} Results Found
+              </h2>
+              {filteredJobs ? (
+                filteredJobs.map((job) => (
+                  <JobContainer
+                    id={job._id}
+                    type={job.jobpost_type}
+                    mode={job.jobpost_mode}
+                    location={job.jobpost_location}
+                    company_name={job.jobpost_company_name}
+                    duration={job.jobpost_duration}
+                    role={job.jobpost_role}
+                    pay={job.jobpost_pay}
+                    job_description={job.jobpost_job_description}
+                    experience={job.jobpost_experience}
+                  />
+                ))
+              ) : (
+                <>No job openings</>
+              )}
+            </> : <><h2 className="text-3xl font-semibold  m-5 text-indigo-600">
+              Loading...
+            </h2></>}
           </div>
         </>
       ) : (

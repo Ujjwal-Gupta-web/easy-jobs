@@ -1,7 +1,7 @@
-const base = "http://localhost:5000";
+// const base = "http://localhost:5000";
 
 export const auth_applicant = async (obj) => {
-  const res = await fetch(`${base}/api/applicant/auth`, {
+  const res = await fetch(`/api/applicant/auth`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -13,7 +13,7 @@ export const auth_applicant = async (obj) => {
 };
 
 export const register_applicant = async (obj) => {
-  const res = await fetch(`${base}/api/applicant/signup`, {
+  const res = await fetch(`/api/applicant/signup`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -25,7 +25,7 @@ export const register_applicant = async (obj) => {
 };
 
 export const login_applicant = async (obj) => {
-  const res = await fetch(`${base}/api/applicant/login`, {
+  const res = await fetch(`/api/applicant/login`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -37,7 +37,7 @@ export const login_applicant = async (obj) => {
 };
 
 export const get_applications = async (obj) => {
-  const res = await fetch(`${base}/api/applicant/getapplication`, {
+  const res = await fetch(`/api/applicant/getapplication`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -49,7 +49,7 @@ export const get_applications = async (obj) => {
 };
 
 export const get_applicant_details_by_id = async (obj) => {
-  const res = await fetch(`${base}/api/applicant/applicantdets`, {
+  const res = await fetch(`/api/applicant/applicantdets`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -61,7 +61,7 @@ export const get_applicant_details_by_id = async (obj) => {
 };
 
 export const apply_application = async (obj) => {
-  const res = await fetch(`${base}/api/applicant/application`, {
+  const res = await fetch(`/api/applicant/application`, {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
@@ -73,7 +73,7 @@ export const apply_application = async (obj) => {
 };
 
 export const delete_application = async (obj) => {
-  const res = await fetch(`${base}/api/applicant/application`, {
+  const res = await fetch(`/api/applicant/application`, {
     method: "DELETE",
     body: JSON.stringify(obj),
     headers: {
