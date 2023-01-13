@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build":"cd client && npm run build",
-    "install-client":"cd client && npm install --legacy-peer-deps",
-    "heroku-postbuild":"npm run install-client && npm run build",
+  "scripts": {   
+      "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "client-build": "npm run install-client && npm run build",
+    "server-build":"npm install",
+    "app-build":"npm run client-build && npm run server-build",
     "start": "node index.js",
-    "client":"cd client && npm start"    
+    "client": "cd client && npm start"
   },
   "author": "Ujjwal",
   "license": "ISC",
