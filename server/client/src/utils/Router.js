@@ -24,7 +24,7 @@ export default function Router() {
 
           <Route exact path="/applicant/dashboard" element={<DashboardApplicant />} />
           <Route exact path="/recruiter/dashboard" element={<DashboardRecruiter />} />
-          
+
 
         </Routes>
       </BrowserRouter>

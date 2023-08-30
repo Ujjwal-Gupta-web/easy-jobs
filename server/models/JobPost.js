@@ -2,7 +2,10 @@ const mongoose=require('mongoose');
 const Schema = mongoose.Schema;
 
 const JobPost = new Schema({
-    jobpost_recruiter_id:String,
+    jobpost_recruiter_id:{
+        type: Schema.Types.ObjectId,
+        ref: 'Recruiters'
+    },
     jobpost_type:String,
     jobpost_mode:String,
     jobpost_location:String,

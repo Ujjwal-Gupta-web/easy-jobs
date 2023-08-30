@@ -6,7 +6,11 @@ const Applicant = new Schema({
     applicant_password:String,
     applicant_name:String,
     applicant_experience:String,
-    applicant_description:String
+    applicant_description:String,
+    applications:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Applications'
+    }],
 });
 
 

@@ -41,14 +41,24 @@ export default function Signup() {
         applicant_description: description,
         applicant_experience: experience,
       };
-      register_applicant(obj).then((data) => alert(data.message));
+      register_applicant(obj).then((data) => {
+        alert(data.message)
+        if(data.tag){
+          navigate("/login");
+        }
+      });
     } else if (userType === "recruiter") {
       let obj = {
         recruiter_email: email,
         recruiter_password: password,
         recruiter_name: fullname,
       };
-      register_recruiter(obj).then((data) => alert(data.message));
+      register_recruiter(obj).then((data) => {
+        alert(data.message)
+        if(data.tag){
+          navigate("/login");
+        }
+      });
     }
     setEmail("");
     setFullname("");

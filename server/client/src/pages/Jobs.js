@@ -25,9 +25,11 @@ export default function Jobs() {
           setIsLoggedIn(true);
           get_all_jobposts().then((data) => {
             // console.log(data);
-            setJobs(data.message);
+            if(data.tag){
+              setJobs(data.message);
+              setFilteredJobs(data.message);
+            }
             setLoading(false);
-            setFilteredJobs(data.message);
           });
         } else {
           setIsLoggedIn(false);
@@ -105,7 +107,7 @@ export default function Jobs() {
                 {filteredJobs.length} Results Found
               </h2>
               {filteredJobs ? (
-                filteredJobs.map((job) => (
+                filteredJobs?.map((job) => (
                   <JobContainer
                     id={job._id}
                     type={job.jobpost_type}
