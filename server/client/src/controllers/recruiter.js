@@ -42,6 +42,7 @@ export const create_jobpost = async (obj) => {
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
+      "Authorization":localStorage.getItem("recruiter_token")
     },
   });
   const ans = await res.json();
@@ -54,6 +55,7 @@ export const get_jobposts = async (obj) => {
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
+      "Authorization":localStorage.getItem("recruiter_token")
     },
   });
   const ans = await res.json();
@@ -77,6 +79,7 @@ export const edit_jobpost = async (obj) => {
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
+      "Authorization":localStorage.getItem("recruiter_token")
     },
   });
   const ans = await res.json();
@@ -89,6 +92,7 @@ export const delete_jobpost = async (obj) => {
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
+      "Authorization":localStorage.getItem("recruiter_token")
     },
   });
   const ans = await res.json();
@@ -101,6 +105,7 @@ export const get_jobpost_applications = async (obj) => {
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
+      "Authorization":localStorage.getItem("recruiter_token")
     },
   });
   const ans = await res.json();
@@ -113,6 +118,7 @@ export const get_recruiter_details_by_id = async (obj) => {
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
+      "Authorization":localStorage.getItem("recruiter_token")
     },
   });
   const ans = await res.json();

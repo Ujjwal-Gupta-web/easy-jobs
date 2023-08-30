@@ -92,7 +92,7 @@ router.post("/getjobsposted",authMiddleware, async (req, res) => {
 
 })
 
-router.post("/alljobposts",authMiddleware, async (req, res) => {
+router.post("/alljobposts", async (req, res) => {
 
     let jobsposted = await JobPost.find();
     if (jobsposted.length > 0) {

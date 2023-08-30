@@ -42,6 +42,7 @@ export const get_applications = async (obj) => {
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
+      "Authorization" : localStorage.getItem('applicant_token')
     },
   });
   const ans = await res.json();
@@ -54,6 +55,7 @@ export const get_applicant_details_by_id = async (obj) => {
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
+      "Authorization" : localStorage.getItem('applicant_token')
     },
   });
   const ans = await res.json();
@@ -66,6 +68,7 @@ export const apply_application = async (obj) => {
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
+      "Authorization" : localStorage.getItem('applicant_token')
     },
   });
   const ans = await res.json();
@@ -78,6 +81,7 @@ export const delete_application = async (obj) => {
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
+      "Authorization" : localStorage.getItem('applicant_token')
     },
   });
   const ans = await res.json();
