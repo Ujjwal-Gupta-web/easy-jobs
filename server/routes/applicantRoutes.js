@@ -7,7 +7,7 @@ const Applicant = require("../models/Applicant");
 const Application = require("../models/Application");
 const JobPost = require("../models/JobPost");
 
-const authMiddleware=require("../middleware/authMiddleware")
+const authMiddleware = require("../middleware/authMiddleware")
 
 router.post("/auth", async (req, res) => {
     const token = req.body.token;
@@ -28,7 +28,7 @@ router.post("/auth", async (req, res) => {
     }
 })
 
-router.post("/applicantdets",authMiddleware, async (req, res) => {
+router.post("/applicantdets", authMiddleware, async (req, res) => {
     const id = req.body.id;
     let applicant = {};
     applicant = await Applicant.findOne({ _id: id });
@@ -99,18 +99,18 @@ router.post("/login", async (req, res) => {
 
 })
 
-router.post("/getapplication",authMiddleware, async (req, res) => {
+router.post("/getapplication", authMiddleware, async (req, res) => {
 
     const objId = req.body.id;
 
-    let applications = await Application.find({ application_applicant_id: objId });
+    let applications = await Application.find({ application_applicant_id: objId }).populate("application_jobpost_id");
     if (applications.length > 0) {
 
         let obj = [];
         let len = applications.length;
 
         for (let i = 0; i < len; i++) {
-            let temp = await JobPost.findOne({ _id: applications[i].application_jobpost_id });
+            let temp = applications[i].application_jobpost_id;
             obj.push(temp);
         }
 
@@ -120,16 +120,16 @@ router.post("/getapplication",authMiddleware, async (req, res) => {
 
 })
 
-router.post("/jobpost/applications", authMiddleware,async (req, res) => {
+router.post("/jobpost/applications", authMiddleware, async (req, res) => {
 
-    let applications = await Application.find({ application_jobpost_id: req.body.application_jobpost_id });
+    let applications = await Application.find({ application_jobpost_id: req.body.application_jobpost_id }).populate("application_applicant_id");
     let arr = [];
     let len = applications.length;
     for (let i = 0; i < len; i++) {
-        let temp = await Applicant.find({ _id: applications[i].application_applicant_id });
+        let temp = applications[i].application_applicant_id;
         arr.push(temp);
     }
-    if (arr.length > 0) {
+    if (len > 0) {
         return res.json({
             "message": arr,
             "tag": true
@@ -141,7 +141,7 @@ router.post("/jobpost/applications", authMiddleware,async (req, res) => {
     })
 })
 
-router.post("/application",authMiddleware, async (req, res) => {
+router.post("/application", authMiddleware, async (req, res) => {
     const { application_applicant_id,
         application_jobpost_id } = req.body;
 
@@ -160,13 +160,15 @@ router.post("/application",authMiddleware, async (req, res) => {
 
 })
 
-router.delete("/application",authMiddleware, async (req, res) => {    
-    const {jobpost_id,
-        applicant_id}=req.body;
-    Application.deleteOne({ application_applicant_id:applicant_id,
-        application_jobpost_id:jobpost_id}, function (err) {
+router.delete("/application", authMiddleware, async (req, res) => {
+    const { jobpost_id,
+        applicant_id } = req.body;
+    Application.deleteOne({
+        application_applicant_id: applicant_id,
+        application_jobpost_id: jobpost_id
+    }, function (err) {
         if (err) {
-            
+
             return res.json({ "message": "Some error occured try again", "tag": false })
         }
         else {
