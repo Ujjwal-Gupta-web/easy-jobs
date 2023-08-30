@@ -7,6 +7,8 @@ const Applicant = require("../models/Applicant");
 const Application = require("../models/Application");
 const JobPost = require("../models/JobPost");
 
+const authMiddleware=require("../middleware/authMiddleware")
+
 router.post("/auth", async (req, res) => {
     const token = req.body.token;
     try {
@@ -26,7 +28,7 @@ router.post("/auth", async (req, res) => {
     }
 })
 
-router.post("/applicantdets", async (req, res) => {
+router.post("/applicantdets",authMiddleware, async (req, res) => {
     const id = req.body.id;
     let applicant = {};
     applicant = await Applicant.findOne({ _id: id });
@@ -97,7 +99,7 @@ router.post("/login", async (req, res) => {
 
 })
 
-router.post("/getapplication", async (req, res) => {
+router.post("/getapplication",authMiddleware, async (req, res) => {
 
     const objId = req.body.id;
 
@@ -118,7 +120,7 @@ router.post("/getapplication", async (req, res) => {
 
 })
 
-router.post("/jobpost/applications", async (req, res) => {
+router.post("/jobpost/applications", authMiddleware,async (req, res) => {
 
     let applications = await Application.find({ application_jobpost_id: req.body.application_jobpost_id });
     let arr = [];
@@ -139,7 +141,7 @@ router.post("/jobpost/applications", async (req, res) => {
     })
 })
 
-router.post("/application", async (req, res) => {
+router.post("/application",authMiddleware, async (req, res) => {
     const { application_applicant_id,
         application_jobpost_id } = req.body;
 
@@ -158,7 +160,7 @@ router.post("/application", async (req, res) => {
 
 })
 
-router.delete("/application", async (req, res) => {    
+router.delete("/application",authMiddleware, async (req, res) => {    
     const {jobpost_id,
         applicant_id}=req.body;
     Application.deleteOne({ application_applicant_id:applicant_id,

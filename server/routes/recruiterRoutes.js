@@ -77,7 +77,7 @@ router.post("/login", async (req, res) => {
 
 })
 
-router.post("/getjobsposted", async (req, res) => {
+router.post("/getjobsposted",authMiddleware, async (req, res) => {
 
     const objId = req.body.id;
 
@@ -92,7 +92,7 @@ router.post("/getjobsposted", async (req, res) => {
 
 })
 
-router.post("/alljobposts", async (req, res) => {
+router.post("/alljobposts",authMiddleware, async (req, res) => {
 
     let jobsposted = await JobPost.find();
     if (jobsposted.length > 0) {
@@ -102,7 +102,7 @@ router.post("/alljobposts", async (req, res) => {
     return res.json({ "tag": false, message: "No job posts" });
 })
 
-router.post("/jobpost", async (req, res) => {
+router.post("/jobpost",authMiddleware, async (req, res) => {
     let {
         jobpost_recruiter_id,
         jobpost_type,
@@ -138,7 +138,7 @@ router.post("/jobpost", async (req, res) => {
     })
 })
 
-router.put("/jobpost", async (req, res) => {
+router.put("/jobpost",authMiddleware, async (req, res) => {
     let {
         _id,
         jobpost_recruiter_id,
@@ -178,7 +178,7 @@ router.put("/jobpost", async (req, res) => {
     })
 })
 
-router.delete("/jobpost", async (req, res) => {
+router.delete("/jobpost",authMiddleware, async (req, res) => {
     const { _id } = req.body;
 
     JobPost.deleteOne({ _id }, function (err) {
@@ -192,7 +192,7 @@ router.delete("/jobpost", async (req, res) => {
     });
 })
 
-router.post("/recruiterdets", async (req, res) => {
+router.post("/recruiterdets", authMiddleware,async (req, res) => {
     const id = req.body.id;
     let recruiter = {};
     recruiter = await Recruiter.findOne({ _id: id });
