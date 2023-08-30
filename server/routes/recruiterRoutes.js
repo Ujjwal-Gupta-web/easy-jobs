@@ -6,6 +6,8 @@ var bcrypt = require('bcryptjs');
 const Recruiter = require("../models/Recruiter");
 const JobPost = require("../models/JobPost");
 
+const authMiddleware=require("../middleware/authMiddleware")
+
 router.post("/auth", async (req, res) => {
     const token = req.body.token;
     try {
